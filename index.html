@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Texto con Deadpool y Wolverine</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2; /* Color de fondo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff; /* Color de fondo del contenedor */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .imagen-superior {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #ff0000; /* Rojo para el título principal */
+        }
+
+        input[type="text"], button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+            display: block;
+            margin: 10px auto;
+        }
+
+        button {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f5f5f5;
+            position: relative;
+        }
+
+        .resultado p {
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .resultado .nombre {
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .resultado img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 10px auto;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            input[type="text"], button {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .resultado img {
+                max-width: 100%;
+                float: none;
+                margin: 10px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="imagen-superior" src="https://yt3.googleusercontent.com/jUXU46JEYO1R4kG9eI8TKW7tkrGaJ8cEtVwUT_JP_K_0LKxQJetHWOa4LV-z7BeGUbXY_WoHlg=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" alt="Imagen superior">
+        <h1>¿Cómo te llamas?</h1>
+        <input type="text" id="nombreInput" placeholder="Tu nombre">
+        <button onclick="generarTexto()">Generar Texto</button>
+        <button onclick="descargarTexto()">Descargar Imagen y Nombre</button>
+        <div id="resultado" class="resultado">
+            <!-- Aquí se mostrará el texto generado -->
+        </div>
+    </div>
+
+    <script>
+        function generarTexto() {
+            var nombre = document.getElementById("nombreInput").value.trim();
+            var resultadoDiv = document.getElementById("resultado");
+
+            if (nombre === "") {
+                resultadoDiv.innerHTML = "<p>Por favor, introduce tu nombre.</p>";
+                return;
+            }
+
+            var texto = `
+                <p><span class="texto-hola">¡Hola,</span> <span class="nombre">${nombre}</span>!</p>
+                <p>No te pierdas la oportunidad de ver a Deadpool y Wolverine juntos en una nueva aventura. La película se estrena el próximo 25 de julio.</p>
+                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/353CC6E434CA544C677596ACDDE553B762C4D4E49E52F36B4C3205EA49CFA8DD/scale?width=600&format=webp" alt="Imagen de la película" class="imagen-derecha">
+            `;
+
+            resultadoDiv.innerHTML = texto;
+        }
+
+        function descargarTexto() {
+            var nombre = document.getElementById("nombreInput").value.trim();
+            var imagenURL = "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/353CC6E434CA544C677596ACDDE553B762C4D4E49E52F36B4C3205EA49CFA8DD/scale?width=600&format=webp";
+            var textoDescarga = `
+                <!DOCTYPE html>
+                <html lang="es">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Texto generado</title>
+                    <style>
+                        body {
+                            background-color: black; /* Color de fondo */
+                            font-family: 'Arial', sans-serif;
+                            color: white; /* Color de texto */
+                            margin: 0;
+                            padding: 20px;
+                        }
+
+                        .resultado p {
+                            text-align: justify;
+                            line-height: 1.6;
+                        }
+
+                        .resultado .nombre {
+                            color: #ff0000;
+                            font-weight: bold;
+                        }
+
+                        .resultado img {
+                            width: 100%;
+                            height: auto;
+                            border-radius: 8px;
+                            display: block;
+                            margin: 10px auto;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <p><span class="texto-hola">¡Hola,</span> <span class="nombre">${nombre}</span>!</p>
+                    <p>No te pierdas la oportunidad de ver a Deadpool y Wolverine juntos en una nueva aventura. La película se estrena el próximo 25 de julio.</p>
+                    <img src="${imagenURL}" alt="Imagen de la película">
+                </body>
+                </html>
+            `;
+
+            // Crear un Blob con el contenido HTML generado
+            var blob = new Blob([textoDescarga], { type: 'text/html' });
+
+            // Crear un enlace para descargar el archivo
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'nombre_imagen.html';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
